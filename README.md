@@ -3,9 +3,9 @@
 To view implement SubQueries, Views and Joins.
 
 ### Create employee Table
-```
+```sql
 CREATE TABLE EMP (EMPNO NUMBER(4) PRIMARY KEY,ENAME VARCHAR2(10),JOB VARCHAR2(9),MGR NUMBER(4),HIREDATE DATE,SAL NUMBER(7,2),COMM NUMBER(7,2),DEPTNO NUMBER(2));
-```
+```sql
 ### Insert the values
 ```
 INSERT INTO EMP (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)
@@ -75,7 +75,7 @@ SELECT ename FROM EMP WHERE sal > (SELECT sal FROM EMP WHERE empno = 7566);
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
 ### QUERY:
-```
+```sql
 SELECT ename,job,sal FROM EMP WHERE sal = (SELECT MIN(sal) FROM EMP);
 ```
 ### OUTPUT:
@@ -83,7 +83,7 @@ SELECT ename,job,sal FROM EMP WHERE sal = (SELECT MIN(sal) FROM EMP);
 
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
 ### QUERY:
-```
+```sql
 SELECT ename,job FROM EMP WHERE deptno = 10 AND job IN (SELECT job FROM EMP WHERE job = 'sales');
 ```
 ### OUTPUT:
@@ -92,7 +92,7 @@ SELECT ename,job FROM EMP WHERE deptno = 10 AND job IN (SELECT job FROM EMP WHER
 
 #### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 ### QUERY:
-```
+```sql
 create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
 SELECT * FROM empv5;
 ```
@@ -101,7 +101,7 @@ SELECT * FROM empv5;
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 ### QUERY:
-```
+```sql
 create view empv30 AS select EMPNO,ENAME,SAL from EMP where DEPTNO=30;
 SELECT * FROM empv30;
 ```
@@ -111,7 +111,7 @@ SELECT * FROM empv30;
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
 ### QUERY:
-```
+```sql
 UPDATE EMP SET sal = sal * 1.1 WHERE job = 'CLERK';
 create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
 ```
@@ -140,7 +140,7 @@ INSERT INTO Customer1 (customer_id, cust_name, city, grade, salesman_id) VALUES(
 CREATE TABLE Salesman1 (salesman_id INT,name VARCHAR(20),city VARCHAR(20),commission DECIMAL(4,2));
 ```
 ### Inserting Values to the Table
-```
+```sql
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5001, 'James Hoog', 'New York', 0.15);
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5002, 'Nail Knite', 'Paris', 0.13);
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5005, 'Pit Alex', 'London', 0.11);
@@ -150,7 +150,7 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ```
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
 ### QUERY:
-```
+```sql
 select s.name,c.cust_name,s.city from salesman1 s ,customer1 c where s.city=c.city;
 ```
 ### OUTPUT:
@@ -160,7 +160,7 @@ select s.name,c.cust_name,s.city from salesman1 s ,customer1 c where s.city=c.ci
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
 ### QUERY:
-```
+```sql
 select s.name,c.cust_name,c.city,s.commission from salesman1 s inner join customer1 c on s.city=c.city where s.commission>0.13;
 ```
 ### OUTPUT:
@@ -169,7 +169,7 @@ select s.name,c.cust_name,c.city,s.commission from salesman1 s inner join custom
 
 ### Q9) Perform Natural join on both tables
 ### QUERY:
-```
+```sql
  select * from salesman1 s natural join customer1 c;
 ```
 ### OUTPUT:
@@ -178,7 +178,7 @@ select s.name,c.cust_name,c.city,s.commission from salesman1 s inner join custom
 
 ### Q10) Perform Left and right join on both tables
 ### QUERY:
-```
+```sql
 select s.name,c.cust_name,c.city,s.commission from salesman1 s left join customer1 c on s.salesman_id=c.salesman_id;
 
 select s.name,c.cust_name,c.city,s.commission from salesman1 s right join customer1 c on s.salesman_id=c.salesman_id;
