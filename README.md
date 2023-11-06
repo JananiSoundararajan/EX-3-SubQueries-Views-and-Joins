@@ -1,4 +1,4 @@
-# EX-3-SubQueries-Views-and-Joins
+# EX 3 SubQueries Views and Joins
 ## Date:
 ## Aim:
 To view implement SubQueries, Views and Joins.
